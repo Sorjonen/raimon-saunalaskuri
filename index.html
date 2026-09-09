@@ -8,6 +8,60 @@
     background-color: #f3eee5;
 }
     .isa-kuva {
+    width: 250px;
+    margin-top: 20px;
+}
+
+    #tulos {
+        margin-top: 30px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<h1>Raimon oma saunalaskuri</h1>
+
+<p>Anna kiukaan teho kilowatteina:</p>
+<input type="number" id="kiukaan_teho">
+
+<p>Anna lämmitysaika minuutteina:</p>
+<input type="number" id="lammitysaika">
+
+<p>Anna saunomisaika minuutteina:</p>
+<input type="number" id="saunomisaika">
+
+<p>Anna sähkön hinta snt/kWh:</p>
+<input type="number" id="sahkon_hinta">
+
+<br><br>
+<button onclick="laske()">Laske</button>
+<p id="tulos"></p>
+<img src="isa.jpg" alt="isa" class="isa-kuva">
+<script>
+    function laske() {
+        let kiukaanTeho = Number(document.getElementById("kiukaan_teho").value);
+        let lammitysaika = Number(document.getElementById("lammitysaika").value);
+        let saunomisaika = Number(document.getElementById("saunomisaika").value);
+        let sahkonHinta = Number(document.getElementById("sahkon_hinta").value);
+        let kulutus = ((lammitysaika + saunomisaika) / 60) * kiukaanTeho;
+        let saunomisenHinta = kulutus * (sahkonHinta / 100);
+        document.getElementById("tulos").innerHTML =
+    "Saunominen kuluttaa noin " + kulutus.toFixed(2).replace(".", ",") +
+    " kWh ja maksaa noin " + saunomisenHinta.toFixed(2).replace(".", ",") + " €.";
+    }
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saunalaskuri</title>
+    <style>
+        body {
+    background-color: #f3eee5;
+}
+    .isa-kuva {
         position: absolute;
         top: 80px;
         right: 600px;
